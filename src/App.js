@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+const App = () => {
 
-function App() {
+  const [link, setLink] = useState("");
+  const onChange = (e) => {
+    let dataLink = e.target.value;
+    dataLink = dataLink.replace(/["]/g, `'`);
+    dataLink = dataLink.replace(/class=/g, `className=`);
+    let splitHref = dataLink.search("href");
+    let splitHtml = dataLink.search(".html");
+    let href = dataLink.slice(splitHref, splitHtml);
+    let demoHref = `${href}.html'`;
+    href = `${href}'`;
+    href = href.replace("href='", "href='/");
+    dataLink = dataLink.replace(demoHref, "");
+    let newLink = `<Link ${href}>${dataLink}</Link>`;
+    setLink(newLink);
+  };
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(link);
+      // setCopySuccess("Copied!");
+    } catch (err) {
+      // setCopySuccess("Failed to copy!");
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <textarea onChange={(e) => onChange(e)} cols="30" rows="10"></textarea>
+      {link}
+      <button onClick={() => copyLink("some text to copy")}>Copy</button>
     </div>
   );
-}
+};
 
-export default App;
+
+export default (App);
