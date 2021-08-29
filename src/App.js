@@ -10,13 +10,21 @@ const App = () => {
     dataLink = dataLink.replace(/class=/g, `className=`);
     let splitHref = dataLink.search("href");
     let splitHtml = dataLink.search(".html");
-    let href = dataLink.slice(splitHref, splitHtml);
-    let demoHref = `${href}.html'`;
-    href = `${href}'`;
-    href = href.includes("href") ? href.replace("href='", "href='/") : "";
-    dataLink = dataLink.replace(demoHref, "");
-    let newLink = `<Link ${href}>${dataLink}</Link>`;
-    setoutPutLink(newLink);
+    if (splitHtml !== -1) {
+      let href = dataLink.slice(splitHref, splitHtml);
+      let demoHref = `${href}.html'`;
+      href = `${href}'`;
+      href = href.includes("href") ? href.replace("href='", "href='/") : "";
+      dataLink = dataLink.replace(demoHref, "");
+      let newLink = `<Link ${href}>${dataLink}</Link>`;
+      setoutPutLink(newLink);
+    } else {
+      let onClick = `onClick={e=>{e.preventDefult()}}`;
+      let newLink = dataLink.replace(`href='#'`, "");
+      newLink = newLink.replace("<a", `<a ${onClick}`);
+      newLink = `<Link href='#'>${newLink} </Link>`;
+      setoutPutLink(newLink);
+    }
   };
   const copyLink = async () => {
     try {
@@ -38,6 +46,7 @@ const App = () => {
           },
         }}
       />
+
       <h2 className="text-center mb-5">HTML link to NextJS link</h2>
       <div className="row">
         <div className="col-md-6">
@@ -122,10 +131,8 @@ const App = () => {
           href="https://github.com/sabujhasansarker/"
           target="_blank"
           rel="noopener noreferrer"
-        >
-          {" "}
-          Sabuj Hasan Sarker
-        </a>
+        ></a>
+        Sabuj Hasan Sarker
       </p>
     </div>
   );

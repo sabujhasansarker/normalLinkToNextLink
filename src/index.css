@@ -7,9 +7,10 @@
 }
 
 textarea {
-  height: 200px !important;
+  min-height: 200px !important;
   resize: none !important;
 }
+
 textarea:focus,
 button:focus {
   outline: none !important;
