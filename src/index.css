@@ -1,13 +1,41 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@100;300;400;500;600;700;800;900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css");
+
+* {
+  font-family: "Rubik";
+  font-size: 1rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+textarea {
+  height: 200px !important;
+  resize: none !important;
+}
+textarea:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+svg {
+  height: 1rem;
+}
+
+.card {
+  box-shadow: 0px 0px 40px 0px rgb(82 63 105 / 12%);
+  border: 0;
+  margin-bottom: 15px;
+  height: calc(100% - 15px);
+}
+
+.card-header {
+  background: none;
+  border: none;
+  margin: 0.5rem 0;
+}
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+.card-body {
+  padding-top: 0;
 }
