@@ -19,7 +19,7 @@ const App = () => {
       let newLink = `<Link ${href}>${dataLink}</Link>`;
       setoutPutLink(newLink);
     } else {
-      let onClick = `onClick={e=>{e.preventDefult()}}`;
+      let onClick = `onClick={e=>{e.preventDefault()}}`;
       let newLink = dataLink.replace(`href='#'`, "");
       newLink = newLink.replace("<a", `<a ${onClick}`);
       newLink = `<Link href='#'>${newLink} </Link>`;
